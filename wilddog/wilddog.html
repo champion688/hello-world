@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.wilddog.com/sdk/js/2.3.8/wilddog.js"></script>
+</head>
+<body>
+添加数据：<input type="text">
+<script>
+    var config = {
+        authDomain: "688.wilddog.com",
+        syncURL: "https://688.wilddogio.com" //输入节点 URL
+    };
+    wilddog.initializeApp(config);
+    var ref = wilddog.sync().ref("/message");
+    ref.child('message7').on('value', function(snapshot, error) {
+        console.log(snapshot.val());
+        console.log(error);
+        if (!snapshot.val()) {
+            var newPost = snapshot.val();
+            console.log(newPost);
+           // console.log("gender: " + newPost.gender);
+            ref.child('message7').set({
+                "game248":{
+                   "full_name": "Steve Jobs",
+                    "gender": "male"
+                }
+            }
+              );
+        } else {
+            console.log(error);
+        }
+    });
+</script>
+</body>
+</html>
